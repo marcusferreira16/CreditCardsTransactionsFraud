@@ -1,2 +1,3 @@
 __pycache__/
-utils/setup.py
+src/config.py
+src/spark-warehouse

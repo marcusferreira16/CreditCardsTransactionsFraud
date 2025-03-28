@@ -1,13 +1,9 @@
-from utils.imports import *
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import col, isnan, when, count, median, mean, length
+from pyspark.sql.types import IntegerType, StringType, FloatType, DateType
 
 # Inicializa uma SparkSession com um nome de aplicação descritivo
 spark = SparkSession.builder \
     .appName("CreditCardTransactions") \
     .master('local[*]') \
     .getOrCreate()
-
-# Baixa a base do Kaggle e retorna o DataFrame
-def extract_database_kaggle(spark, caminho_database: str):
-    path = kagglehub.dataset_download(caminho_database)
-    df = spark.read.option('delimiter', ',').option("header", True).csv(path)
-    return df
